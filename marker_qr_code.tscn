@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bjckc5gehoinh"]
+
+[ext_resource type="Script" uid="uid://vbx35n71gw2m" path="res://marker_qr_code.gd" id="1_sbw4u"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_0j7jy"]
+
+[node name="MarkerQrCode" type="XRAnchor3D" unique_id=798030605]
+script = ExtResource("1_sbw4u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=569940997]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("SphereMesh_0j7jy")

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bslykitq0tqdr" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://eylbqt5sytpl" path="res://timer.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://xgj1gva7hgh5" path="res://spatiel_entities_manager.gd" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bjckc5gehoinh" path="res://marker_qr_code.tscn" id="3_1bvp3"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ig7tw"]
 
@@ -29,6 +31,10 @@ tracker = &"right_hand"
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/XRController3D_right" unique_id=74870881]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 mesh = SubResource("SphereMesh_ig7tw")
+
+[node name="SpatielEntitiesManager" type="Node3D" parent="XROrigin3D" unique_id=874610899]
+script = ExtResource("2_h2yge")
+marker_tracker_scene = ExtResource("3_1bvp3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=835902595]
 unique_name_in_owner = true
