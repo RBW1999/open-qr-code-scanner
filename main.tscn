@@ -1,16 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://31ixa0siwq6s"]
+[gd_scene format=3 uid="uid://31ixa0siwq6s"]
 
 [ext_resource type="Script" uid="uid://bslykitq0tqdr" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://eylbqt5sytpl" path="res://timer.gd" id="2_0xm2m"]
 
-[node name="Main" type="Node3D"]
+[sub_resource type="SphereMesh" id="SphereMesh_ig7tw"]
+
+[sub_resource type="Environment" id="Environment_ig7tw"]
+ambient_light_source = 2
+ambient_light_color = Color(0.3403394, 0.3403393, 0.3403391, 1)
+
+[node name="Main" type="Node3D" unique_id=1531041617]
 script = ExtResource("1_ig7tw")
 
-[node name="XROrigin3D" type="XROrigin3D" parent="."]
+[node name="XROrigin3D" type="XROrigin3D" parent="." unique_id=146962374]
 
-[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D" unique_id=352291522]
 
-[node name="XRController3D_left" type="XRController3D" parent="XROrigin3D"]
+[node name="XRController3D_left" type="XRController3D" parent="XROrigin3D" unique_id=1168519694]
 tracker = &"left_hand"
 
-[node name="XRController3D_right" type="XRController3D" parent="XROrigin3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/XRController3D_left" unique_id=1984732213]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = SubResource("SphereMesh_ig7tw")
+
+[node name="XRController3D_right" type="XRController3D" parent="XROrigin3D" unique_id=1682988934]
 tracker = &"right_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/XRController3D_right" unique_id=74870881]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = SubResource("SphereMesh_ig7tw")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=835902595]
+unique_name_in_owner = true
+environment = SubResource("Environment_ig7tw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1419581728]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.81839454, 0)
+
+[node name="TimerDebugOSActions" type="Timer" parent="." unique_id=1655546047]
+script = ExtResource("2_0xm2m")
+
+[connection signal="timeout" from="TimerDebugOSActions" to="TimerDebugOSActions" method="_on_timeout"]
