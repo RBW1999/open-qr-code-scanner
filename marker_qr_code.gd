@@ -2,21 +2,21 @@ extends XRAnchor3D
 
 @export var ui : MeshInstance3D
 @export var ui_scale_factor := 10
-@onready var viewport_2Din3D : XRToolsViewport2DIn3D = $Viewport2Din3D
+@onready var qr_code_border: XRToolsViewport2DIn3D = %QRCodeBorder
+@onready var qr_code_buttons: XRToolsViewport2DIn3D = %QRCodeButtons
 
 var marker_tracker: OpenXRMarkerTracker
 const QR_CODE_UI_SCALER := 1.4
 
 var content := ""
 var content_is_valid_url := false
+var data_is_binary := false
+var marker_type_not_supported := false
+
+var qr_code_ui : QR_Code_UI_Controller
 
 func _ready() -> void:
 	marker_tracker = XRServer.get_tracker(tracker)
-	
-	viewport_2Din3D.screen_size = marker_tracker.bounds_size * QR_CODE_UI_SCALER
-	# connect ui signals
-	viewport_2Din3D.get_scene_instance().open_link.connect(on_open_link_pressed)
-	# TODO
 	
 	if marker_tracker:
 		match marker_tracker.marker_type:
@@ -26,10 +26,9 @@ func _ready() -> void:
 				if data is String:
 					# Data is a QR code as a string, usually a URL.
 					content = data
-					pass
 				elif data is PackedByteArray:
 					# Data is binary, can be anything.
-					pass
+					data_is_binary = true
 			OpenXRSpatialComponentMarkerList.MARKER_TYPE_MICRO_QRCODE:
 				@warning_ignore("untyped_declaration")
 				var data = marker_tracker.get_marker_data()
@@ -39,13 +38,41 @@ func _ready() -> void:
 					pass
 				elif data is PackedByteArray:
 					# Data is binary, can be anything.
-					pass
+					data_is_binary = true
 			OpenXRSpatialComponentMarkerList.MARKER_TYPE_ARUCO:
 				# Use marker_tracker.marker_id to identify the marker.
 				pass
 			OpenXRSpatialComponentMarkerList.MARKER_TYPE_APRIL_TAG:
 				# Use marker_tracker.marker_id to identify the marker.
 				pass
+	
+	if (marker_type_not_supported):
+		push_warning("Marker Type is not supported.")
+		return
+	
+	if (data_is_binary):
+		push_warning("Binary data is not supported.")
+		return
+	
+	# setup UI
+	var bounds := marker_tracker.bounds_size
+	
+	qr_code_border.screen_size *= bounds
+	
+	# transform buttons under qr code border
+	qr_code_buttons.screen_size *= bounds
+	qr_code_buttons.position = Vector3(0, qr_code_buttons.position.y * bounds.x, 0)
+	
+	qr_code_ui = qr_code_buttons.get_scene_instance()
+	
+	content_is_valid_url = is_valid_url(content)
+	qr_code_ui.set_qr_code_ui_content(content_is_valid_url, content)
+	
+	print("Content: " + content)
+	
+	qr_code_ui.open_link.connect(on_open_link_pressed)
+	qr_code_ui.copy_content.connect(on_copy_content_pressed)
+
 
 func is_valid_url(url : String) -> bool:
 	var regex := RegEx.new()
@@ -70,4 +97,4 @@ func on_open_link_pressed() -> void:
 	get_tree().quit()
 
 func on_copy_content_pressed() -> void:
-	pass
+	DisplayServer.clipboard_set(content)

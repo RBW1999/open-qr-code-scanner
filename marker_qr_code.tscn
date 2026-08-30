@@ -2,25 +2,46 @@
 
 [ext_resource type="Script" uid="uid://vbx35n71gw2m" path="res://marker_qr_code.gd" id="1_sbw4u"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_fqibq"]
-[ext_resource type="PackedScene" uid="uid://bnbl3gmr5f7f7" path="res://qr_code_ui.tscn" id="3_4sh2m"]
+[ext_resource type="PackedScene" uid="uid://bnbl3gmr5f7f7" path="res://UI/ui_qr_code_border.tscn" id="3_4sh2m"]
+[ext_resource type="PackedScene" uid="uid://ckpy2dlbbfwko" path="res://UI/ui_qr_code_buttons.tscn" id="4_4sh2m"]
+[ext_resource type="Texture2D" uid="uid://c073t2tfvksjk" path="res://assets/icons/Text.png" id="4_d32e0"]
+[ext_resource type="Texture2D" uid="uid://b236u5u7ayud5" path="res://assets/icons/Globe.png" id="5_22mwd"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_0j7jy"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_fqibq"]
+[sub_resource type="QuadMesh" id="QuadMesh_ijixf"]
 resource_local_to_scene = true
-size = Vector2(1.4, 1.4)
+size = Vector2(2.1, 0.21)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4sh2m"]
-viewport_path = NodePath("Viewport2Din3D/Viewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_khpfi"]
+viewport_path = NodePath("QRCodeBorder/QRCodeButtons/Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d32e0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmavy"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_4sh2m")
+albedo_texture = SubResource("ViewportTexture_khpfi")
 texture_filter = 1
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_22mwd"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_hncei"]
+resource_local_to_scene = true
+size = Vector3(2.1, 0.21, 0.02)
+
+[sub_resource type="QuadMesh" id="QuadMesh_4sh2m"]
+resource_local_to_scene = true
+size = Vector2(1.4, 1.4)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_d32e0"]
+viewport_path = NodePath("QRCodeBorder/Viewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22mwd"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_d32e0")
+texture_filter = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bl78p"]
 resource_local_to_scene = true
 size = Vector3(1.4, 1.4, 0.02)
 
@@ -33,26 +54,54 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_0j7jy")
 
-[node name="Viewport2Din3D" parent="." unique_id=1875255348 instance=ExtResource("2_fqibq")]
+[node name="QRCodeBorder" parent="." unique_id=1875255348 instance=ExtResource("2_fqibq")]
+unique_name_in_owner = true
 screen_size = Vector2(1.4, 1.4)
 scene = ExtResource("3_4sh2m")
-viewport_size = Vector2(250, 250)
+viewport_size = Vector2(512, 512)
 transparent = 1
 unshaded = true
 scene_properties_keys = PackedStringArray()
 
-[node name="Viewport" parent="Viewport2Din3D" index="0"]
-size = Vector2i(250, 250)
+[node name="QRCodeButtons" parent="QRCodeBorder" unique_id=824237227 instance=ExtResource("2_fqibq")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7585213, 0)
+screen_size = Vector2(2.1, 0.21)
+scene = ExtResource("4_4sh2m")
+viewport_size = Vector2(768, 76.65)
+transparent = 1
+unshaded = true
+scene_properties_keys = PackedStringArray("ui_qr_code_buttons_controller.gd", "i_text", "i_web")
+i_text = ExtResource("4_d32e0")
+i_web = ExtResource("5_22mwd")
 
-[node name="Screen" parent="Viewport2Din3D" index="1"]
-mesh = SubResource("QuadMesh_fqibq")
-surface_material_override/0 = SubResource("StandardMaterial3D_d32e0")
+[node name="Viewport" parent="QRCodeBorder/QRCodeButtons" index="0"]
+size = Vector2i(768, 76)
 
-[node name="StaticBody3D" parent="Viewport2Din3D" index="2"]
+[node name="Screen" parent="QRCodeBorder/QRCodeButtons" index="1"]
+mesh = SubResource("QuadMesh_ijixf")
+surface_material_override/0 = SubResource("StandardMaterial3D_dmavy")
+
+[node name="StaticBody3D" parent="QRCodeBorder/QRCodeButtons" index="2"]
+screen_size = Vector2(2.1, 0.21)
+viewport_size = Vector2(768, 76.65)
+
+[node name="CollisionShape3D" parent="QRCodeBorder/QRCodeButtons/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_hncei")
+
+[node name="Viewport" parent="QRCodeBorder" index="1"]
+size = Vector2i(512, 512)
+
+[node name="Screen" parent="QRCodeBorder" index="2"]
+mesh = SubResource("QuadMesh_4sh2m")
+surface_material_override/0 = SubResource("StandardMaterial3D_22mwd")
+
+[node name="StaticBody3D" parent="QRCodeBorder" index="3"]
 screen_size = Vector2(1.4, 1.4)
-viewport_size = Vector2(250, 250)
+viewport_size = Vector2(512, 512)
 
-[node name="CollisionShape3D" parent="Viewport2Din3D/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_22mwd")
+[node name="CollisionShape3D" parent="QRCodeBorder/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_bl78p")
 
-[editable path="Viewport2Din3D"]
+[editable path="QRCodeBorder"]
+[editable path="QRCodeBorder/QRCodeButtons"]

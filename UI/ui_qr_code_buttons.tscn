@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://ckpy2dlbbfwko"]
+
+[ext_resource type="Script" uid="uid://bqmxdul4wq0f2" path="res://UI/ui_qr_code_buttons_controller.gd" id="1_60hrc"]
+[ext_resource type="Texture2D" uid="uid://c073t2tfvksjk" path="res://assets/icons/Text.png" id="2_gdark"]
+[ext_resource type="Theme" uid="uid://b33wuj2b20kb1" path="res://assets/theme/open_qr_code_theme.tres" id="2_strwd"]
+[ext_resource type="Texture2D" uid="uid://b236u5u7ayud5" path="res://assets/icons/Globe.png" id="3_gdark"]
+[ext_resource type="Texture2D" uid="uid://dswwsk45kxabs" path="res://assets/icons/Copy.png" id="4_cuwtl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ou161"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.09411765, 0.12941177, 0.15294118, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[node name="HBoxContainer" type="HBoxContainer" unique_id=1754805003]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_constants/separation = 6
+script = ExtResource("1_60hrc")
+i_text = ExtResource("2_gdark")
+i_web = ExtResource("3_gdark")
+
+[node name="B_Content" type="Button" parent="." unique_id=983402919]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+custom_maximum_size = Vector2(450, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_strwd")
+theme_override_constants/h_separation = 8
+theme_override_font_sizes/font_size = 24
+text = "www.google.com"
+icon = ExtResource("3_gdark")
+alignment = 0
+text_overrun_behavior = 3
+expand_icon = true
+
+[node name="B_Copy" type="Button" parent="." unique_id=859794956]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(65, 65)
+custom_maximum_size = Vector2(65, 65)
+layout_mode = 2
+theme = ExtResource("2_strwd")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou161")
+icon = ExtResource("4_cuwtl")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="B_Content" to="." method="_on_b_content_pressed"]
+[connection signal="pressed" from="B_Copy" to="." method="_on_b_copy_pressed"]
