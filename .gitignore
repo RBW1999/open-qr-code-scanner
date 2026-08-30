@@ -18,3 +18,6 @@ android/
 data_*/
 mono_crash.*.json
 
+# ignore affinity lock files
+*.af~lock~
+
