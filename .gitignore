@@ -7,9 +7,6 @@
 export.cfg
 export_credentials.cfg
 
-# ignore addons folder
-addons/
-
 # ignore builds
 android/
 
