@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bnbl3gmr5f7f7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0j7jy"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0.9666667, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="QR-Code UI" type="CanvasLayer" unique_id=1992083684]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1409898169]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -117.5
+offset_right = 100.0
+offset_bottom = 117.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer" unique_id=1817945865]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0j7jy")
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1463297074]
+layout_mode = 2
+text = "Link Öffnen"

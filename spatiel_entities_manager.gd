@@ -50,6 +50,7 @@ func _exit_tree() -> void:
 # See if this tracker should be managed by us and add it.
 func _add_tracker(tracker: OpenXRSpatialEntityTracker) -> void:
 	var new_node: XRAnchor3D
+	print("tracker added")
 
 	if _managed_nodes.has(tracker):
 		# Already being managed by us!
@@ -97,6 +98,7 @@ func _on_tracker_updated(_tracker_name: StringName, _type: int) -> void:
 
 # A tracker was removed from our XRServer.
 func _on_tracker_removed(tracker_name: StringName, type: int) -> void:
+	print("tracker removed")
 	if type == XRServer.TRACKER_ANCHOR:
 		var tracker: XRTracker = XRServer.get_tracker(tracker_name)
 		if _managed_nodes.has(tracker):

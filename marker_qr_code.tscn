@@ -1,12 +1,23 @@
 [gd_scene format=3 uid="uid://bjckc5gehoinh"]
 
 [ext_resource type="Script" uid="uid://vbx35n71gw2m" path="res://marker_qr_code.gd" id="1_sbw4u"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_fqibq"]
+[ext_resource type="PackedScene" uid="uid://bnbl3gmr5f7f7" path="res://qr_code_ui.tscn" id="3_4sh2m"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_0j7jy"]
 
-[node name="MarkerQrCode" type="XRAnchor3D" unique_id=798030605]
+[node name="MarkerQrCode" type="XRAnchor3D" unique_id=798030605 node_paths=PackedStringArray("ui")]
 script = ExtResource("1_sbw4u")
+ui = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=569940997]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+visible = false
 mesh = SubResource("SphereMesh_0j7jy")
+
+[node name="Viewport2Din3D" parent="." unique_id=1875255348 instance=ExtResource("2_fqibq")]
+screen_size = Vector2(2, 2)
+scene = ExtResource("3_4sh2m")
+viewport_size = Vector2(250, 250)
+transparent = 1
+scene_properties_keys = PackedStringArray()

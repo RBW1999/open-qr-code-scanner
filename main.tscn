@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bslykitq0tqdr" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://eylbqt5sytpl" path="res://timer.gd" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="2_272bh"]
 [ext_resource type="Script" uid="uid://xgj1gva7hgh5" path="res://spatiel_entities_manager.gd" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bjckc5gehoinh" path="res://marker_qr_code.tscn" id="3_1bvp3"]
 
@@ -25,12 +26,18 @@ tracker = &"left_hand"
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 mesh = SubResource("SphereMesh_ig7tw")
 
+[node name="FunctionPointer" parent="XROrigin3D/XRController3D_left" unique_id=1314377254 instance=ExtResource("2_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.05, -0.1)
+
 [node name="XRController3D_right" type="XRController3D" parent="XROrigin3D" unique_id=1682988934]
 tracker = &"right_hand"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/XRController3D_right" unique_id=74870881]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 mesh = SubResource("SphereMesh_ig7tw")
+
+[node name="FunctionPointer" parent="XROrigin3D/XRController3D_right" unique_id=696058008 instance=ExtResource("2_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0.05, -0.1)
 
 [node name="SpatielEntitiesManager" type="Node3D" parent="XROrigin3D" unique_id=874610899]
 script = ExtResource("2_h2yge")
@@ -41,7 +48,7 @@ unique_name_in_owner = true
 environment = SubResource("Environment_ig7tw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1419581728]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.81839454, 0)
+transform = Transform3D(1, 0, 0, 0, 0.4266982, 0.9043941, 0, -0.9043941, 0.4266982, 0, 0.81839454, 0)
 
 [node name="TimerDebugOSActions" type="Timer" parent="." unique_id=1655546047]
 script = ExtResource("2_0xm2m")
