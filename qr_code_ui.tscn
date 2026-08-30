@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://bnbl3gmr5f7f7"]
 
 [ext_resource type="Script" uid="uid://bqmxdul4wq0f2" path="res://qr_code_ui_controller.gd" id="1_lqa3e"]
+[ext_resource type="Theme" uid="uid://b33wuj2b20kb1" path="res://assets/theme/open_qr_code_theme.tres" id="2_ou161"]
+[ext_resource type="Texture2D" uid="uid://b236u5u7ayud5" path="res://assets/icons/Globe.png" id="3_l8png"]
+[ext_resource type="Texture2D" uid="uid://dswwsk45kxabs" path="res://assets/icons/Copy.png" id="4_rsj8x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0j7jy"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -13,6 +16,17 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ou161"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.09411765, 0.12941177, 0.15294118, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
 
 [node name="QR-Code UI" type="VBoxContainer" unique_id=928756513]
 anchors_preset = 8
@@ -33,8 +47,27 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_0j7jy")
 
-[node name="OpenLink" type="Button" parent="." unique_id=1463297074]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1891099116]
 layout_mode = 2
-text = "Link Öffnen"
+theme_override_constants/separation = 6
 
-[connection signal="pressed" from="OpenLink" to="." method="_on_open_link_pressed"]
+[node name="B_Content" type="Button" parent="HBoxContainer" unique_id=1463297074]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_ou161")
+text = "[Content] aaaaaaaaaaaaaaa"
+icon = ExtResource("3_l8png")
+text_overrun_behavior = 1
+expand_icon = true
+
+[node name="B_Copy" type="Button" parent="HBoxContainer" unique_id=585051477]
+custom_minimum_size = Vector2(33, 33)
+custom_maximum_size = Vector2(33, 33)
+layout_mode = 2
+theme = ExtResource("2_ou161")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ou161")
+icon = ExtResource("4_rsj8x")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="HBoxContainer/B_Content" to="." method="_on_open_link_pressed"]

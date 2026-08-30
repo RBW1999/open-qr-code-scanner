@@ -8,6 +8,7 @@
 
 [sub_resource type="QuadMesh" id="QuadMesh_fqibq"]
 resource_local_to_scene = true
+size = Vector2(1.4, 1.4)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4sh2m"]
 viewport_path = NodePath("Viewport2Din3D/Viewport")
@@ -21,7 +22,7 @@ texture_filter = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_22mwd"]
 resource_local_to_scene = true
-size = Vector3(1, 1, 0.02)
+size = Vector3(1.4, 1.4, 0.02)
 
 [node name="MarkerQrCode" type="XRAnchor3D" unique_id=798030605 node_paths=PackedStringArray("ui")]
 script = ExtResource("1_sbw4u")
@@ -33,7 +34,7 @@ visible = false
 mesh = SubResource("SphereMesh_0j7jy")
 
 [node name="Viewport2Din3D" parent="." unique_id=1875255348 instance=ExtResource("2_fqibq")]
-screen_size = Vector2(1, 1)
+screen_size = Vector2(1.4, 1.4)
 scene = ExtResource("3_4sh2m")
 viewport_size = Vector2(250, 250)
 transparent = 1
@@ -48,7 +49,7 @@ mesh = SubResource("QuadMesh_fqibq")
 surface_material_override/0 = SubResource("StandardMaterial3D_d32e0")
 
 [node name="StaticBody3D" parent="Viewport2Din3D" index="2"]
-screen_size = Vector2(1, 1)
+screen_size = Vector2(1.4, 1.4)
 viewport_size = Vector2(250, 250)
 
 [node name="CollisionShape3D" parent="Viewport2Din3D/StaticBody3D" index="0"]
