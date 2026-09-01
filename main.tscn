@@ -24,6 +24,7 @@ tracker = &"left_hand"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/XRController3D_left" unique_id=1984732213]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+visible = false
 mesh = SubResource("SphereMesh_ig7tw")
 
 [node name="FunctionPointer" parent="XROrigin3D/XRController3D_left" unique_id=1314377254 instance=ExtResource("2_272bh")]
@@ -34,6 +35,7 @@ tracker = &"right_hand"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/XRController3D_right" unique_id=74870881]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+visible = false
 mesh = SubResource("SphereMesh_ig7tw")
 
 [node name="FunctionPointer" parent="XROrigin3D/XRController3D_right" unique_id=696058008 instance=ExtResource("2_272bh")]
