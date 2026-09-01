@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="2_272bh"]
 [ext_resource type="Script" uid="uid://xgj1gva7hgh5" path="res://spatiel_entities_manager.gd" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bjckc5gehoinh" path="res://marker_qr_code.tscn" id="3_1bvp3"]
+[ext_resource type="Material" uid="uid://bu2j0xqs5g5q8" path="res://assets/materials/m_pointer_target.tres" id="3_7mycd"]
+[ext_resource type="Material" uid="uid://n4shcd0c2lok" path="res://assets/materials/m_pointer_laser.tres" id="3_272bh"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ig7tw"]
 
@@ -29,6 +31,11 @@ mesh = SubResource("SphereMesh_ig7tw")
 
 [node name="FunctionPointer" parent="XROrigin3D/XRController3D_left" unique_id=1314377254 instance=ExtResource("2_272bh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.05, -0.1)
+laser_length = 1
+laser_material = ExtResource("3_272bh")
+show_target = true
+target_radius = 0.005
+target_material = ExtResource("3_7mycd")
 
 [node name="XRController3D_right" type="XRController3D" parent="XROrigin3D" unique_id=1682988934]
 tracker = &"right_hand"
@@ -40,6 +47,11 @@ mesh = SubResource("SphereMesh_ig7tw")
 
 [node name="FunctionPointer" parent="XROrigin3D/XRController3D_right" unique_id=696058008 instance=ExtResource("2_272bh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0.05, -0.1)
+laser_length = 1
+laser_material = ExtResource("3_272bh")
+show_target = true
+target_radius = 0.005
+target_material = ExtResource("3_7mycd")
 
 [node name="SpatielEntitiesManager" type="Node3D" parent="XROrigin3D" unique_id=874610899]
 script = ExtResource("2_h2yge")
