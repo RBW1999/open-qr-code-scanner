@@ -6,7 +6,6 @@ extends XRAnchor3D
 @onready var qr_code_buttons: XRToolsViewport2DIn3D = %QRCodeButtons
 
 var marker_tracker: OpenXRMarkerTracker
-const QR_CODE_UI_SCALER := 1.4
 
 var content := ""
 var content_is_valid_url := false
@@ -55,13 +54,15 @@ func _ready() -> void:
 		return
 	
 	# setup UI
-	var bounds := marker_tracker.bounds_size
+	var qr_code_size := marker_tracker.bounds_size * 10
 	
-	qr_code_border.screen_size *= bounds
+	qr_code_border.screen_size *= qr_code_size
+	
+	print(qr_code_size)
 	
 	# transform buttons under qr code border
-	qr_code_buttons.screen_size *= bounds
-	qr_code_buttons.position = Vector3(0, qr_code_buttons.position.y * bounds.x, 0)
+	# qr_code_buttons.screen_size *= bounds
+	qr_code_buttons.position = Vector3(0, qr_code_buttons.position.y * qr_code_size.x, 0)
 	
 	qr_code_ui = qr_code_buttons.get_scene_instance()
 	
