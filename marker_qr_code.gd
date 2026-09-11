@@ -55,10 +55,8 @@ func _ready() -> void:
 	
 	# setup UI
 	var qr_code_size := marker_tracker.bounds_size * 10
-	
 	qr_code_border.screen_size *= qr_code_size
 	
-	print(qr_code_size)
 	
 	# transform buttons under qr code border
 	# qr_code_buttons.screen_size *= bounds

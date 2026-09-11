@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bjckc5gehoinh" path="res://marker_qr_code.tscn" id="3_1bvp3"]
 [ext_resource type="Material" uid="uid://bu2j0xqs5g5q8" path="res://assets/materials/m_pointer_target.tres" id="3_7mycd"]
 [ext_resource type="Material" uid="uid://n4shcd0c2lok" path="res://assets/materials/m_pointer_laser.tres" id="3_272bh"]
+[ext_resource type="Script" uid="uid://cfx2vufute734" path="res://permisson_restart_pop_up.gd" id="7_4c57u"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://x4a1ptc5y62g" path="res://UI/PermissionBugUI.tscn" id="8_kek77"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ig7tw"]
 
@@ -20,6 +23,7 @@ script = ExtResource("1_ig7tw")
 [node name="XROrigin3D" type="XROrigin3D" parent="." unique_id=146962374]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D" unique_id=352291522]
+unique_name_in_owner = true
 
 [node name="XRController3D_left" type="XRController3D" parent="XROrigin3D" unique_id=1168519694]
 tracker = &"left_hand"
@@ -56,6 +60,20 @@ target_material = ExtResource("3_7mycd")
 [node name="SpatielEntitiesManager" type="Node3D" parent="XROrigin3D" unique_id=874610899]
 script = ExtResource("2_h2yge")
 marker_tracker_scene = ExtResource("3_1bvp3")
+
+[node name="PermissonRestartPopUp" type="Node3D" parent="XROrigin3D" unique_id=112407286]
+unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("7_4c57u")
+
+[node name="UIPanel" parent="XROrigin3D/PermissonRestartPopUp" unique_id=1074279438 instance=ExtResource("7_5vw27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -3)
+screen_size = Vector2(2, 2)
+scene = ExtResource("8_kek77")
+viewport_size = Vector2(1200, 1200)
+transparent = 1
+unshaded = true
+scene_properties_keys = PackedStringArray("permission_bug_ui_controller.gd")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=835902595]
 unique_name_in_owner = true

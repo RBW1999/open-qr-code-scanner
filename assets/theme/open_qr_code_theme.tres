@@ -1,5 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://b33wuj2b20kb1"]
 
+[ext_resource type="StyleBox" uid="uid://700dogu8bcdf" path="res://assets/theme/panel_style_box_flat.tres" id="1_y1lo8"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3u7b"]
 content_margin_left = 7.0
 content_margin_top = 7.0
@@ -40,3 +42,5 @@ Button/font_sizes/font_size = 14
 Button/styles/hover = SubResource("StyleBoxFlat_y3u7b")
 Button/styles/normal = SubResource("StyleBoxFlat_imipj")
 Button/styles/pressed = SubResource("StyleBoxFlat_jjpe7")
+Panel/styles/panel = ExtResource("1_y1lo8")
+PanelContainer/styles/panel = ExtResource("1_y1lo8")
