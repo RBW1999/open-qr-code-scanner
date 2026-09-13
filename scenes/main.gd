@@ -13,6 +13,8 @@ var xr_is_focussed := false
 
 
 func _ready() -> void:
+	
+	# temporary solution for first start up permissions bug
 	var permissions : PackedStringArray = OS.get_granted_permissions()
 	if permissions.find("com.oculus.permission.USE_SCENE") != -1 :
 		print("permission granted")
@@ -21,20 +23,10 @@ func _ready() -> void:
 		print("permisson not granted")
 		permisson_restart_pop_up.visible = true
 	
-	# Check for exisitig permisisons before starting XR - https://godotvr.github.io/godot_openxr_vendors/manual/androidxr/trackables.html#permissions
-	# get_tree().on_request_permissions_result.connect(_on_request_permissions_result) # "com.oculus.permission.USE_SCENE"
-	
-	start_XR()
+	setup_XR()
 
 
-# func on_request_permissions_result(permission: String, granted: bool) -> void:
-#	if permission == "com.oculus.permission.USE_SCENE" and granted :
-#		OpenXRSpatialEntityExtension.create_spatial_context(todo)
-
-# Starts the XR after permissions are checked
-# Code taken from Godot XR Tutorial - Better Start Up Script
-# https://docs.godotengine.org/en/4.5/tutorials/xr/a_better_xr_start_script.html
-func start_XR() -> void:
+func setup_XR() -> void:
 	
 	xr_interface = XRServer.find_interface("OpenXR")
 	if xr_interface and xr_interface.is_initialized():

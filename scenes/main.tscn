@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://31ixa0siwq6s"]
 
-[ext_resource type="Script" uid="uid://bslykitq0tqdr" path="res://main.gd" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://eylbqt5sytpl" path="res://timer.gd" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="2_272bh"]
-[ext_resource type="Script" uid="uid://xgj1gva7hgh5" path="res://spatiel_entities_manager.gd" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://bjckc5gehoinh" path="res://marker_qr_code.tscn" id="3_1bvp3"]
-[ext_resource type="Material" uid="uid://bu2j0xqs5g5q8" path="res://assets/materials/m_pointer_target.tres" id="3_7mycd"]
-[ext_resource type="Material" uid="uid://n4shcd0c2lok" path="res://assets/materials/m_pointer_laser.tres" id="3_272bh"]
-[ext_resource type="Script" uid="uid://cfx2vufute734" path="res://permisson_restart_pop_up.gd" id="7_4c57u"]
-[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="7_5vw27"]
-[ext_resource type="PackedScene" uid="uid://x4a1ptc5y62g" path="res://UI/PermissionBugUI.tscn" id="8_kek77"]
+[ext_resource type="Script" uid="uid://bslykitq0tqdr" path="res://scenes/main.gd" id="1_choun"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="2_ya4ey"]
+[ext_resource type="Material" uid="uid://n4shcd0c2lok" path="res://assets/materials/m_pointer_laser.tres" id="3_eb6dy"]
+[ext_resource type="Material" uid="uid://bu2j0xqs5g5q8" path="res://assets/materials/m_pointer_target.tres" id="4_trceg"]
+[ext_resource type="Script" uid="uid://xgj1gva7hgh5" path="res://scenes/spatiel_entities_manager.gd" id="5_85g3d"]
+[ext_resource type="PackedScene" uid="uid://bjckc5gehoinh" path="res://scenes/UI/anchor_qr_code/anchor_qr_code.tscn" id="6_85g3d"]
+[ext_resource type="Script" uid="uid://cfx2vufute734" path="res://scenes/permisson_restart_pop_up.gd" id="7_choun"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="8_muem4"]
+[ext_resource type="PackedScene" uid="uid://x4a1ptc5y62g" path="res://scenes/UI/permissions_ui/permissions_bug_ui.tscn" id="9_85g3d"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ig7tw"]
 
@@ -18,7 +17,7 @@ ambient_light_source = 2
 ambient_light_color = Color(0.3403394, 0.3403393, 0.3403391, 1)
 
 [node name="Main" type="Node3D" unique_id=1531041617]
-script = ExtResource("1_ig7tw")
+script = ExtResource("1_choun")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="." unique_id=146962374]
 
@@ -33,13 +32,13 @@ transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_ig7tw")
 
-[node name="FunctionPointer" parent="XROrigin3D/XRController3D_left" unique_id=1314377254 instance=ExtResource("2_272bh")]
+[node name="FunctionPointer" parent="XROrigin3D/XRController3D_left" unique_id=1314377254 instance=ExtResource("2_ya4ey")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.05, -0.1)
 laser_length = 1
-laser_material = ExtResource("3_272bh")
+laser_material = ExtResource("3_eb6dy")
 show_target = true
 target_radius = 0.005
-target_material = ExtResource("3_7mycd")
+target_material = ExtResource("4_trceg")
 
 [node name="XRController3D_right" type="XRController3D" parent="XROrigin3D" unique_id=1682988934]
 tracker = &"right_hand"
@@ -49,27 +48,27 @@ transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_ig7tw")
 
-[node name="FunctionPointer" parent="XROrigin3D/XRController3D_right" unique_id=696058008 instance=ExtResource("2_272bh")]
+[node name="FunctionPointer" parent="XROrigin3D/XRController3D_right" unique_id=696058008 instance=ExtResource("2_ya4ey")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0.05, -0.1)
 laser_length = 1
-laser_material = ExtResource("3_272bh")
+laser_material = ExtResource("3_eb6dy")
 show_target = true
 target_radius = 0.005
-target_material = ExtResource("3_7mycd")
+target_material = ExtResource("4_trceg")
 
 [node name="SpatielEntitiesManager" type="Node3D" parent="XROrigin3D" unique_id=874610899]
-script = ExtResource("2_h2yge")
-marker_tracker_scene = ExtResource("3_1bvp3")
+script = ExtResource("5_85g3d")
+marker_tracker_scene = ExtResource("6_85g3d")
 
 [node name="PermissonRestartPopUp" type="Node3D" parent="XROrigin3D" unique_id=112407286]
 unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
-script = ExtResource("7_4c57u")
+script = ExtResource("7_choun")
 
-[node name="UIPanel" parent="XROrigin3D/PermissonRestartPopUp" unique_id=1074279438 instance=ExtResource("7_5vw27")]
+[node name="UIPanel" parent="XROrigin3D/PermissonRestartPopUp" unique_id=1074279438 instance=ExtResource("8_muem4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -3)
 screen_size = Vector2(2, 2)
-scene = ExtResource("8_kek77")
+scene = ExtResource("9_85g3d")
 viewport_size = Vector2(1200, 1200)
 transparent = 1
 unshaded = true
@@ -81,8 +80,3 @@ environment = SubResource("Environment_ig7tw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1419581728]
 transform = Transform3D(1, 0, 0, 0, 0.4266982, 0.9043941, 0, -0.9043941, 0.4266982, 0, 0.81839454, 0)
-
-[node name="TimerDebugOSActions" type="Timer" parent="." unique_id=1655546047]
-script = ExtResource("2_0xm2m")
-
-[connection signal="timeout" from="TimerDebugOSActions" to="TimerDebugOSActions" method="_on_timeout"]

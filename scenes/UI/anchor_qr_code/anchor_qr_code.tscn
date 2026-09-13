@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bjckc5gehoinh"]
 
-[ext_resource type="Script" uid="uid://vbx35n71gw2m" path="res://marker_qr_code.gd" id="1_sbw4u"]
-[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_fqibq"]
-[ext_resource type="PackedScene" uid="uid://bnbl3gmr5f7f7" path="res://UI/ui_qr_code_border.tscn" id="3_4sh2m"]
-[ext_resource type="PackedScene" uid="uid://ckpy2dlbbfwko" path="res://UI/ui_qr_code_buttons.tscn" id="4_4sh2m"]
-[ext_resource type="Texture2D" uid="uid://c073t2tfvksjk" path="res://assets/icons/Text.png" id="4_d32e0"]
-[ext_resource type="Texture2D" uid="uid://b236u5u7ayud5" path="res://assets/icons/Globe.png" id="5_22mwd"]
+[ext_resource type="Script" uid="uid://vbx35n71gw2m" path="res://scenes/UI/anchor_qr_code/anchor_qr_code.gd" id="1_pq43y"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_b0b1h"]
+[ext_resource type="PackedScene" uid="uid://bnbl3gmr5f7f7" path="res://scenes/UI/anchor_qr_code/border/ui_qr_code_border.tscn" id="3_pq43y"]
+[ext_resource type="PackedScene" uid="uid://ckpy2dlbbfwko" path="res://scenes/UI/anchor_qr_code/buttons/ui_qr_code_buttons.tscn" id="4_kp0rd"]
+[ext_resource type="Texture2D" uid="uid://c073t2tfvksjk" path="res://assets/icons/Text.png" id="5_nqf8r"]
+[ext_resource type="Texture2D" uid="uid://b236u5u7ayud5" path="res://assets/icons/Globe.png" id="6_47bf1"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_0j7jy"]
 
@@ -45,8 +45,8 @@ texture_filter = 1
 resource_local_to_scene = true
 size = Vector3(0.3, 0.03, 0.02)
 
-[node name="MarkerQrCode" type="XRAnchor3D" unique_id=798030605 node_paths=PackedStringArray("ui")]
-script = ExtResource("1_sbw4u")
+[node name="AnchorQrCode" type="XRAnchor3D" unique_id=798030605 node_paths=PackedStringArray("ui")]
+script = ExtResource("1_pq43y")
 ui = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=569940997]
@@ -54,10 +54,10 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_0j7jy")
 
-[node name="QRCodeBorder" parent="." unique_id=1875255348 instance=ExtResource("2_fqibq")]
+[node name="QRCodeBorder" parent="." unique_id=1875255348 instance=ExtResource("2_b0b1h")]
 unique_name_in_owner = true
 screen_size = Vector2(0.14, 0.14)
-scene = ExtResource("3_4sh2m")
+scene = ExtResource("3_pq43y")
 viewport_size = Vector2(450, 450)
 transparent = 1
 unshaded = true
@@ -77,17 +77,17 @@ viewport_size = Vector2(450, 450)
 [node name="CollisionShape3D" parent="QRCodeBorder/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_khpfi")
 
-[node name="QRCodeButtons" parent="." unique_id=824237227 instance=ExtResource("2_fqibq")]
+[node name="QRCodeButtons" parent="." unique_id=824237227 instance=ExtResource("2_b0b1h")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06980137, 0)
 screen_size = Vector2(0.3, 0.03)
-scene = ExtResource("4_4sh2m")
+scene = ExtResource("4_kp0rd")
 viewport_size = Vector2(768, 76.65)
 transparent = 1
 unshaded = true
 scene_properties_keys = PackedStringArray("ui_qr_code_buttons_controller.gd", "i_text", "i_web")
-i_text = ExtResource("4_d32e0")
-i_web = ExtResource("5_22mwd")
+i_text = ExtResource("5_nqf8r")
+i_web = ExtResource("6_47bf1")
 
 [node name="Viewport" parent="QRCodeButtons" index="0"]
 size = Vector2i(768, 76)

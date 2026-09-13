@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://ckpy2dlbbfwko"]
 
-[ext_resource type="Script" uid="uid://bqmxdul4wq0f2" path="res://UI/ui_qr_code_buttons_controller.gd" id="1_60hrc"]
+[ext_resource type="Script" uid="uid://bqmxdul4wq0f2" path="res://scenes/UI/anchor_qr_code/buttons/ui_qr_code_buttons_controller.gd" id="1_60hrc"]
 [ext_resource type="Texture2D" uid="uid://c073t2tfvksjk" path="res://assets/icons/Text.png" id="2_gdark"]
 [ext_resource type="Theme" uid="uid://b33wuj2b20kb1" path="res://assets/theme/open_qr_code_theme.tres" id="2_strwd"]
 [ext_resource type="Texture2D" uid="uid://b236u5u7ayud5" path="res://assets/icons/Globe.png" id="3_gdark"]
 [ext_resource type="Texture2D" uid="uid://dswwsk45kxabs" path="res://assets/icons/Copy.png" id="4_cuwtl"]
-[ext_resource type="Script" uid="uid://55i3glmrt6ud" path="res://UI/ui_hover_script.gd" id="5_gdark"]
+[ext_resource type="Script" uid="uid://55i3glmrt6ud" path="res://scenes/UI/ui_hover_script.gd" id="5_gdark"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ou161"]
 content_margin_left = 7.0
