@@ -64,7 +64,7 @@ func _ready() -> void:
 	
 	qr_code_ui = qr_code_buttons.get_scene_instance()
 	
-	content_is_valid_url = is_valid_url(content)
+	content_is_valid_url = check_valid_url(content)
 	qr_code_ui.set_qr_code_ui_content(content_is_valid_url, content)
 	
 	print("Content: " + content)
@@ -73,7 +73,7 @@ func _ready() -> void:
 	qr_code_ui.copy_content.connect(on_copy_content_pressed)
 
 
-func is_valid_url(url : String) -> bool:
+func check_valid_url(url : String) -> bool:
 	var regex := RegEx.new()
 	
 	# Using a raw string (r"...") prevents having to double-escape backslashes
@@ -92,6 +92,23 @@ func is_valid_url(url : String) -> bool:
 	return result != null
 
 func on_open_link_pressed() -> void:
+	
+	# check for http(s)://
+	var regex := RegEx.new()
+	var pattern := r"^(?i)https?:\/\/"
+	
+	# Compile the pattern and check for errors
+	var err := regex.compile(pattern)
+	if err != OK:
+		push_error("Failed to compile http(s) prefix regex!")
+	  
+	# search() returns a RegExMatch object if it finds a match, or null if it fails
+	var result := regex.search(content)
+	
+	if (result == null):
+		content = "https://" + content
+		print("added prefix: " + content)
+	
 	OS.shell_open(content)
 	get_tree().quit()
 
