@@ -6,6 +6,7 @@ signal copy_content
 
 @onready var b_content: Button = %B_Content
 @onready var b_copy: Button = %B_Copy
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var i_text : CompressedTexture2D
 @export var i_web : CompressedTexture2D
@@ -37,6 +38,4 @@ func _on_b_copy_pressed() -> void:
 func on_copy_content() -> void:
 	copy_content.emit()
 	
-	b_copy.text = "copied"
-	await get_tree().create_timer(1).timeout
-	b_copy.text = ""
+	animation_player.play("copied")
