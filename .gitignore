@@ -6,7 +6,7 @@
 .import/
 export.cfg
 export_credentials.cfg
-.tmp
+*.tmp
 
 # ignore builds
 android/
@@ -21,4 +21,3 @@ mono_crash.*.json
 
 # ignore affinity lock files
 *.af~lock~
-
