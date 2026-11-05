@@ -1,12 +1,15 @@
 extends Node3D
+class_name XRMain
 
 signal focus_lost
 signal focus_gained
 signal pose_recentered
 
+signal openxr_session_rdy
+
 @onready var world_environment: WorldEnvironment = %WorldEnvironment
 @onready var vp : Viewport = get_viewport()
-@onready var permisson_restart_pop_up: Node3D = %PermissonRestartPopUp
+@onready var permisson_restart_pop_up: XRPopUp = %PermissonRestartPopUp
 
 var xr_interface : OpenXRInterface
 var xr_is_focussed := false
@@ -14,16 +17,19 @@ var xr_is_focussed := false
 
 func _ready() -> void:
 	
+	setup_XR()
+	
+	
+	
 	# temporary solution for first start up permissions bug
 	var permissions : PackedStringArray = OS.get_granted_permissions()
 	if permissions.find("com.oculus.permission.USE_SCENE") != -1 :
 		print("permission granted")
-		permisson_restart_pop_up.visible = false
 	else :
 		print("permisson not granted")
-		permisson_restart_pop_up.visible = true
+		permisson_restart_pop_up.show_pop_up()
 	
-	setup_XR()
+
 
 
 func setup_XR() -> void:
@@ -80,7 +86,8 @@ func setup_XR() -> void:
 
 # Handle OpenXR session ready
 func _on_openxr_session_begun() -> void:
-	pass
+	permisson_restart_pop_up.show_pop_up()
+	openxr_session_rdy.emit()
 
 # Handle OpenXR visible state
 func _on_openxr_visible_state() -> void:
