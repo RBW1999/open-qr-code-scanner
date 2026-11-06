@@ -5,7 +5,7 @@ signal focus_lost
 signal focus_gained
 signal pose_recentered
 
-signal openxr_session_rdy
+signal openxr_session_begun
 
 @onready var world_environment: WorldEnvironment = %WorldEnvironment
 @onready var vp : Viewport = get_viewport()
@@ -18,8 +18,6 @@ var xr_is_focussed := false
 func _ready() -> void:
 	
 	setup_XR()
-	
-	
 	
 	# temporary solution for first start up permissions bug
 	var permissions : PackedStringArray = OS.get_granted_permissions()
@@ -86,8 +84,7 @@ func setup_XR() -> void:
 
 # Handle OpenXR session ready
 func _on_openxr_session_begun() -> void:
-	permisson_restart_pop_up.show_pop_up()
-	openxr_session_rdy.emit()
+	openxr_session_begun.emit()
 
 # Handle OpenXR visible state
 func _on_openxr_visible_state() -> void:

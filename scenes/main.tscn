@@ -63,14 +63,14 @@ marker_tracker_scene = ExtResource("6_85g3d")
 [node name="PermissonRestartPopUp" type="Node3D" parent="XROrigin3D" unique_id=112407286]
 unique_name_in_owner = true
 script = ExtResource("7_choun")
-distance_to_camera = 1.2
 roation_angle_threshold = 45
 tween_time = 0.3
 
 [node name="UIPanel" parent="XROrigin3D/PermissonRestartPopUp" unique_id=1074279438 instance=ExtResource("8_muem4")]
-screen_size = Vector2(1, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.084035546, 0)
+screen_size = Vector2(0.5, 0.5)
 scene = ExtResource("9_85g3d")
-viewport_size = Vector2(1200, 1200)
+viewport_size = Vector2(700, 700)
 unshaded = true
 scene_properties_keys = PackedStringArray("permission_bug_ui_controller.gd")
 
