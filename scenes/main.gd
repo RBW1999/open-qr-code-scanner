@@ -8,23 +8,39 @@ signal pose_recentered
 @onready var vp : Viewport = get_viewport()
 @onready var permisson_restart_pop_up: Node3D = %PermissonRestartPopUp
 
+@export var MarkerTrackingCapability : PackedScene
+
 var xr_interface : OpenXRInterface
 var xr_is_focussed := false
 
 
 func _ready() -> void:
 	
-	# temporary solution for first start up permissions bug
-	var permissions : PackedStringArray = OS.get_granted_permissions()
-	if permissions.find("com.oculus.permission.USE_SCENE") != -1 :
-		print("permission granted")
-		permisson_restart_pop_up.visible = false
-	else :
-		print("permisson not granted")
-		permisson_restart_pop_up.visible = true
+	assert(MarkerTrackingCapability != null, "Marker tracking capability scene not found")
 	
 	setup_XR()
+	
+	if (check_for_marker_tracking_permissions()):
+		start_marker_tracking_capability()
+		permisson_restart_pop_up.visible = false
+	else:
+		permisson_restart_pop_up.visible = true
 
+
+## Check for the required marker tracking permissions. Currently only meta. The meta scene API need the "USE_SCENE" permission.
+func check_for_marker_tracking_permissions() -> bool: #TODO Rename
+	var permissions : PackedStringArray = OS.get_granted_permissions()
+	
+	if permissions.find("com.oculus.permission.USE_SCENE") != -1 :
+		print("permission granted")
+		return true
+	
+	print("permisson not granted")
+	return false
+
+func start_marker_tracking_capability() -> void:
+	var marker_tracking_capability : Node = MarkerTrackingCapability.instantiate()
+	add_child(marker_tracking_capability)
 
 func setup_XR() -> void:
 	

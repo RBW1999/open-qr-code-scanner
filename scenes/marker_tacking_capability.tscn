@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cdnoo7eu2dj2v"]
+
+[ext_resource type="Script" uid="uid://2iimj04sp7vf" path="res://scenes/marker_tacking_capability.gd" id="1_40qf4"]
+
+[node name="MarkerTackingCapability" type="Node" unique_id=1279565793]
+script = ExtResource("1_40qf4")
