@@ -1,12 +1,15 @@
 extends Node3D
+class_name XRMain
 
 signal focus_lost
 signal focus_gained
 signal pose_recentered
 
+signal openxr_session_begun
+
 @onready var world_environment: WorldEnvironment = %WorldEnvironment
 @onready var vp : Viewport = get_viewport()
-@onready var permisson_restart_pop_up: Node3D = %PermissonRestartPopUp
+@onready var permisson_restart_pop_up: XRPopUp = %PermissonRestartPopUp
 
 @export var MarkerTrackingCapability : PackedScene
 
@@ -22,11 +25,11 @@ func _ready() -> void:
 	
 	if (check_for_marker_tracking_permissions()):
 		start_marker_tracking_capability()
-		permisson_restart_pop_up.visible = false
 	else:
-		permisson_restart_pop_up.visible = true
-
-
+		permisson_restart_pop_up.show_pop_up()
+	setup_XR()
+	
+	
 ## Check for the required marker tracking permissions. Currently only meta. The meta scene API need the "USE_SCENE" permission.
 func check_for_marker_tracking_permissions() -> bool: #TODO Rename
 	var permissions : PackedStringArray = OS.get_granted_permissions()
@@ -96,7 +99,7 @@ func setup_XR() -> void:
 
 # Handle OpenXR session ready
 func _on_openxr_session_begun() -> void:
-	pass
+	openxr_session_begun.emit()
 
 # Handle OpenXR visible state
 func _on_openxr_visible_state() -> void:

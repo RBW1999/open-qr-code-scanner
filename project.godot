@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Open QR-Code Scanner"
 config/description="Open source QR Code reader build with Godot 4.7 and OpenXR. Visit https://github.com/RBW1999/open-qr-code-scanner for more information."
-config/version="0.2.2"
+config/version="0.2.3"
 run/main_scene="uid://31ixa0siwq6s"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -39,12 +39,15 @@ enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+anti_aliasing/quality/msaa_3d=1
+vrs/mode=2
 
 [xr]
 
 openxr/enabled=true
 openxr/environment_blend_mode=2
 openxr/foveation_level=3
+openxr/foveation_dynamic=true
 openxr/extensions/debug_utils=3
 openxr/extensions/spatial_entity/enabled=true
 openxr/extensions/spatial_entity/enable_marker_tracking=true
